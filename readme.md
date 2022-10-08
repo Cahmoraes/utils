@@ -89,3 +89,25 @@ const myNameIs = partialize(concatStrings, 'My name ', 'is ')
 
 log(myNameIs('Bond')) // My name is Bond
 ```
+
+## pipeline(fn1, fn2, fn3, ...fns)(value)
+
+Used to apply pipeline in a value.
+Each function in pipeline should receive the value passed of previous function, that is mapped by the others functions in pipeline.
+
+This pipeline function not working with Promises. To this, use asyncPipeline function.
+
+This transformation occurs from the left to right
+
+```js
+import { pipeline, log } from '@cahmoraes93/utils'
+
+const double = (n1) => n1 * 2
+const triple = (n1) => n1 * 3
+
+const transformValue = pipeline(double, triple)
+const result = transformValue(3)
+
+log(result)
+//=> 18
+```
