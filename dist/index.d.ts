@@ -60,4 +60,13 @@ declare type PartialFunction<T> = (...args: T[]) => T;
  */
 declare const partialize: <T>(fn: PartialFunction<T>, ...args: any[]) => PartialFunction<T>;
 
-export { asyncPipeline, log, memo, partialize, path, pipeline };
+/**
+ * Return the type of element passed in argument
+ * @date 08/10/2022 - 17:20:28
+ *
+ * @param {unknown} elementToCheck Element to check type
+ * @returns {String} type of element
+ */
+declare const typeOf: (elementToCheck: unknown) => any;
+
+export { asyncPipeline, log, memo, partialize, path, pipeline, typeOf };

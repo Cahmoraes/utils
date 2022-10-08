@@ -136,3 +136,29 @@ const result = await transformValue(Promise.resolve(3))
 log(result)
 //=> 18
 ```
+
+## typeOf(element)
+
+Used to check data type of a given element.
+this function recognizes the difference between null and object.
+
+This transformation occurs from the left to right
+
+```js
+import { typeOf, log } from '@cahmoraes93/utils'
+
+log(typeOf(null))
+//=> null
+log(typeof null) // using typeof native operator
+//=> object
+log(typeOf({}))
+//=> object
+log(typeOf(() => {}))
+//=> function
+log(typeOf('this is a string'))
+//=> string
+log(typeOf(0))
+//=> number
+log(typeOf(undefined))
+//=> undefined
+```
