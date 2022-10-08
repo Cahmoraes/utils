@@ -4,7 +4,7 @@ declare const log: (...args: unknown[]) => void;
 
 declare const pipeline: (...fns: CallableFunction[]) => <T>(value: T) => T;
 
-declare type Callback<K> = <T>(value: T) => K | Promise<K>;
+declare type Callback<T> = (value: T) => T | Promise<T>;
 declare const asyncPipeline: <K>(...fns: Callback<K>[]) => (value: K | Promise<K>) => K | Promise<K>;
 
 declare type MemoizedFn<T> = T & {
