@@ -56,3 +56,24 @@ memoSum.clear() // => clear cache
 log(memoSum(2, 3)) // insert this arguments and result in a internal cache
 log(memoSum(2, 3)) // obtained from cache
 ```
+
+## partialize(function, arg1, arg2)
+
+Used to apply pattern partial application.
+Partialize receives a function to partialize, and args to apply and return a new partial function. This patterns is used to obtain the lazy evaluation.
+
+```js
+import { partialize, log } from '@cahmoraes93/utils'
+
+const sum = (n1, n2) => n1 + n2
+
+const sum1To = partialize(sum, 1)
+log(sum1To(2)) // 3
+//=> 5
+
+const concatStrings = (arg1, arg2, arg3) => `${arg1 + arg2 + arg3}`
+
+const myNameIs = partialize(concatStrings, 'My name ', 'is ')
+
+log(myNameIs('Bond')) // My name is Bond
+```
