@@ -1,18 +1,20 @@
-type MemoizedFn<T extends CallableFunction> = T & {
+type MemoizedFn<T> = T & {
   clear: () => void
 }
 
-export const memo = <T extends CallableFunction>(fn: T): MemoizedFn<any> => {
-  const cache = new Map<string, CallableFunction>()
+type Callback<K> = (...args: K[]) => K
 
-  const memoizedFn = (...args: any[]): ReturnType<MemoizedFn<any>> => {
+export const memo = <K>(fn: K): MemoizedFn<ReturnType<Callback<K>>> => {
+  const cache = new Map<string, ReturnType<Callback<K>>>()
+
+  const memoizedFn = (...args: unknown[]): ReturnType<Callback<K>> => {
     const key = JSON.stringify(args)
 
     if (cache.has(key)) {
-      return cache.get(key) as ReturnType<MemoizedFn<any>>
+      return cache.get(key) as ReturnType<Callback<K>>
     }
 
-    const result = fn(...args)
+    const result = (fn as CallableFunction)(...args)
     cache.set(key, result)
 
     return result
@@ -22,5 +24,5 @@ export const memo = <T extends CallableFunction>(fn: T): MemoizedFn<any> => {
     value: () => cache.clear(),
   })
 
-  return memoizedFn
+  return memoizedFn as any
 }

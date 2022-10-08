@@ -29,7 +29,7 @@ describe.only('memo test suite', () => {
     memoized(2)
 
     expect(fn).toBeCalledTimes(1)
-    // expect(fn).toBeCalledWith(0)
-    // expect(result).toBe(2)
+    expect(fn).toBeCalledWith(2)
+    expect(result).toBe(2)
   })
 })
