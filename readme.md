@@ -4,6 +4,18 @@ This package consists of utility functions.
 
 ## Usage
 
+## log(...args)
+
+Used to log any value. This is a shorthand to <b>console.log</b>.
+
+```js
+import { log } from '@cahmoraes93/utils'
+log(1)
+//=> 1
+log('hello', 'world')
+//=> hello world
+```
+
 ## path(Module, 'pathString')
 
 Used to get internal properties at arrays and objects.
@@ -57,7 +69,7 @@ log(memoSum(2, 3)) // insert this arguments and result in a internal cache
 log(memoSum(2, 3)) // obtained from cache
 ```
 
-## partialize(function, arg1, arg2, ...argN)
+## partialize(function, arg1, arg2, ...args)
 
 Used to apply pattern partial application.
 Partialize receives a function to partialize, and args to apply and return a new partial function. This patterns is used to obtain the lazy evaluation.
