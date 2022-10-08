@@ -57,7 +57,7 @@ log(memoSum(2, 3)) // insert this arguments and result in a internal cache
 log(memoSum(2, 3)) // obtained from cache
 ```
 
-## partialize(function, arg1, arg2)
+## partialize(function, arg1, arg2, ...argN)
 
 Used to apply pattern partial application.
 Partialize receives a function to partialize, and args to apply and return a new partial function. This patterns is used to obtain the lazy evaluation.
