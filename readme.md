@@ -34,3 +34,25 @@ const nothing = path(obj, 'nothing')
 log(nothing)
 //=> null
 ```
+
+## memo(function)
+
+Used to memo a value of a pure function. This function implements memo pattern.
+to clear the cache, call the clear method.
+
+```js
+import { memo, log } from '@cahmoraes93/utils'
+
+const sum = (n1, n2) => n1 + n2
+
+const memoSum = memo(sum)
+log(memoSum(2, 3)) // insert this arguments and result in a internal cache
+//=> 5
+
+log(memoSum(2, 3)) // obtained from cache
+
+memoSum.clear() // => clear cache
+
+log(memoSum(2, 3)) // insert this arguments and result in a internal cache
+log(memoSum(2, 3)) // obtained from cache
+```
