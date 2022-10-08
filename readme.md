@@ -102,7 +102,7 @@ Each function in pipeline should receive the value passed from previous function
 
 <b>This pipeline function not working with Promises. To this, use asyncPipeline function.</b>
 
-This transformation occurs from the left to right
+This transformation occurs from the left to right.
 
 ```js
 import { pipeline, log } from '@cahmoraes93/utils'
@@ -122,7 +122,7 @@ log(result)
 Used to apply async pipeline in a value. It's a async version of pipeline function, however it's work with Promises.
 Each function in pipeline should receive the value passed from previous function, that is mapped by the others functions in pipeline.
 
-This transformation occurs from the left to right
+This transformation occurs from the left to right.
 
 ```js
 import { asyncPipeline, log } from '@cahmoraes93/utils'
@@ -141,8 +141,9 @@ log(result)
 
 Used to check data type of a given element.
 this function recognizes the difference between null and object.
+Return a representational string of a given data type.
 
-This transformation occurs from the left to right
+This transformation occurs from the left to right.
 
 ```js
 import { typeOf, log } from '@cahmoraes93/utils'
@@ -161,4 +162,25 @@ log(typeOf(0))
 //=> number
 log(typeOf(undefined))
 //=> undefined
+```
+
+## isPrimitive(element)
+
+Used to check if a given data type, is a primitive or non-primitive data type.
+
+```js
+import { isPrimitive, log } from '@cahmoraes93/utils'
+
+log(isPrimitive(null))
+//=> true
+log(isPrimitive({}))
+//=> false
+log(isPrimitive(() => {}))
+//=> false
+log(isPrimitive('this is a string'))
+//=> true
+log(isPrimitive(0))
+//=> true
+log(isPrimitive(undefined))
+//=> true
 ```

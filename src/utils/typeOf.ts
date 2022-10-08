@@ -1,5 +1,5 @@
 /**
- * Return the type of element passed in argument
+ * Return a representational string of a given data type
  * @date 08/10/2022 - 17:20:28
  *
  * @param {unknown} elementToCheck Element to check type

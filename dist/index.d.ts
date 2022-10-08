@@ -61,7 +61,7 @@ declare type PartialFunction<T> = (...args: T[]) => T;
 declare const partialize: <T>(fn: PartialFunction<T>, ...args: any[]) => PartialFunction<T>;
 
 /**
- * Return the type of element passed in argument
+ * Return a representational string of a given data type
  * @date 08/10/2022 - 17:20:28
  *
  * @param {unknown} elementToCheck Element to check type
@@ -69,4 +69,13 @@ declare const partialize: <T>(fn: PartialFunction<T>, ...args: any[]) => Partial
  */
 declare const typeOf: (elementToCheck: unknown) => any;
 
-export { asyncPipeline, log, memo, partialize, path, pipeline, typeOf };
+/**
+ * Check if element is a primitive type
+ * @date 04/10/2022 - 21:10:18
+ *
+ * @param {unknown} element Element to check
+ * @returns {boolean} True => primitive | False => not primitive
+ */
+declare const isPrimitive: (element: unknown) => boolean;
+
+export { asyncPipeline, isPrimitive, log, memo, partialize, path, pipeline, typeOf };
