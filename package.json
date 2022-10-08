@@ -4,10 +4,13 @@
   "main": "./dist/index.js",
   "author": "Cahmoraes <ike.moraes93@gmail.com>",
   "keywords": [
-    "brazil",
-    "functional programming"
+    "functional programming",
+    "composition",
+    "pipe",
+    "partial application",
+    "memoization"
   ],
-  "description": "Package made to work with utility functions",
+  "description": "This package was inspired in Functional Programming Paradigm and consists of utility small functions to resolve simple and complex problems.",
   "publishConfig": {
     "access": "public"
   },
