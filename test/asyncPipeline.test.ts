@@ -33,4 +33,14 @@ describe('asyncPipeline test suite', () => {
     expect(fn_2).toHaveBeenCalledTimes(1)
     expect(fn_2).toHaveBeenCalledWith(2)
   })
+
+  it('should apply async pipeline', async () => {
+    const double = (n1: number) => n1 * 2
+    const triple = (n1: number) => n1 * 3
+
+    const transformValue = asyncPipeline(double, triple)
+    const result = await transformValue(Promise.resolve(3))
+
+    expect(result).toBe(18)
+  })
 })

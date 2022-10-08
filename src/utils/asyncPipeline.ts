@@ -1,4 +1,4 @@
-type Callback<K> = <T>(value: T) => K | Promise<K>
+type Callback<T> = (value: T) => T | Promise<T>
 
 export const asyncPipeline =
   <K>(...fns: Callback<K>[]) =>
@@ -7,5 +7,5 @@ export const asyncPipeline =
       if (Promise.resolve(acc) === acc) {
         return fn(await acc)
       }
-      return fn(acc)
+      return fn(acc as Awaited<Promise<K>>)
     }, value)

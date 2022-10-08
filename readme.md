@@ -93,9 +93,9 @@ log(myNameIs('Bond')) // My name is Bond
 ## pipeline(fn1, fn2, fn3, ...fns)(value)
 
 Used to apply pipeline in a value.
-Each function in pipeline should receive the value passed of previous function, that is mapped by the others functions in pipeline.
+Each function in pipeline should receive the value passed from previous function, that is mapped by the others functions in pipeline.
 
-This pipeline function not working with Promises. To this, use asyncPipeline function.
+<b>This pipeline function not working with Promises. To this, use asyncPipeline function.</b>
 
 This transformation occurs from the left to right
 
@@ -107,6 +107,26 @@ const triple = (n1) => n1 * 3
 
 const transformValue = pipeline(double, triple)
 const result = transformValue(3)
+
+log(result)
+//=> 18
+```
+
+## asyncPipeline(fn1, fn2, fn3, ...fns)(value)
+
+Used to apply async pipeline in a value. It's a async version of pipeline function, however it's work with Promises.
+Each function in pipeline should receive the value passed from previous function, that is mapped by the others functions in pipeline.
+
+This transformation occurs from the left to right
+
+```js
+import { asyncPipeline, log } from '@cahmoraes93/utils'
+
+const double = (n1) => Promise.resolve(n1 * 2)
+const triple = (n1) => Promise.resolve(n1 * 3)
+
+const transformValue = asyncPipeline(double, triple)
+const result = await transformValue(Promise.resolve(3))
 
 log(result)
 //=> 18
