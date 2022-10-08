@@ -1,7 +1,7 @@
 import { describe, it, expect, jest } from '@jest/globals'
 import { asyncPipeline } from '../src'
 
-describe.only('asyncPipeline test suite', () => {
+describe('asyncPipeline test suite', () => {
   it('should call functions in asyncPipeline', async () => {
     const fn_1 = jest.fn(() => Promise.resolve(2))
 
