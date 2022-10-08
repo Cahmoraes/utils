@@ -4,6 +4,13 @@ type MemoizedFn<T> = T & {
 
 type Callback<K> = (...args: K[]) => K
 
+/**
+ * Apply patterns memoization to a function
+ * @date 08/10/2022 - 16:29:04
+ *
+ * @param {K} fn Function to apply memoization
+ * @returns {MemoizedFn<ReturnType<Callback<K>>>} Memoized function
+ */
 export const memo = <K>(fn: K): MemoizedFn<ReturnType<Callback<K>>> => {
   const cache = new Map<string, ReturnType<Callback<K>>>()
 
