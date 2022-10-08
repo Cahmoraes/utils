@@ -2,8 +2,6 @@
 
 This package was inspired in Functional Programming Paradigm and consists of utility small functions to resolve simple and complex problems.
 
-## Usage
-
 ## log(...args)
 
 Used to log any value. This is a shorthand to <b>console.log</b>.
