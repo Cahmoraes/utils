@@ -94,6 +94,8 @@ log(myNameIs('Bond')) // My name is Bond
 ## pipeline(fn1, fn2, fn3, ...fns)(value)
 
 Used to apply pipeline in a value.
+Pipeline implements the composition principle of mathematical, where you can compose functions to create a new function, like this example => <b>h = f . g = f(g(x)).</b>
+
 Each function in pipeline should receive the value passed from previous function, that is mapped by the others functions in pipeline.
 
 <b>This pipeline function not working with Promises. To this, use asyncPipeline function.</b>
