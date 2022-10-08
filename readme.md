@@ -1,42 +1,36 @@
 # Motivation
 
-This package perform deep strict equal between data structures.
+This package consists of utility functions.
 
 ## Usage
 
+## path
+
+Used to get internal properties at arrays and objects.
+
 ```js
-import { deepStrictEqual } from '@cahmoraes93/deep-strict-equal'
+import { path, log } from '@cahmoraes93/utils'
 
-deepStrictEqual({ foo: { bar: [1, 2] } }, { foo: { bar: [1, 2] } })
-//=> true
+const obj = {
+  address: {
+    street: 'Baker',
+  },
+  hobbies: ['books', 'games'],
+}
 
-deepStrictEqual({ foo: { bar: [1, 2] } }, { foo: { bar: [1, 4] } })
-//=> false
+const address = path(obj, 'address')
+log(address)
+//=> address: { street: 'Baker' }
 
-deepStrictEqual({ foo: { bar: 1 } }, { foo: { bar: 1 } })
-//=> true
+const street = path(obj, 'address.street')
+log(street)
+//=> Baker
 
-deepStrictEqual({ foo: { bar: 1 } }, { foo: { bar: '1' } })
-//=> false
+const hobby = path(obj, 'hobbies.0')
+log(hobby)
+//=> books
 
-## Map
-
-const map_1 = new Map().set('name', 'caique')
-const map_2 = new Map().set('name', 'caique')
-
-deepStrictEqual(map_1, map_2)
-//=> true
-
-const map_1 = new Map().set('name', 'caique')
-const map_2 = new Map().set('name', 'thomas')
-
-deepStrictEqual(map_1, map_2)
-//=> false
-
-## Set
-const set_1 = new Set().add(1)
-const set_2 = new Set().add(1, 2)
-
-deepStrictEqual(set_1, set_2)
-//=> false
+const nothing = path(obj, 'nothing')
+log(nothing)
+//=> null
 ```
