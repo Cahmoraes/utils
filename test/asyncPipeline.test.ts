@@ -35,8 +35,8 @@ describe('asyncPipeline test suite', () => {
   })
 
   it('should apply async pipeline', async () => {
-    const double = (n1: number) => n1 * 2
-    const triple = (n1: number) => n1 * 3
+    const double = async (n1: number) => n1 * 2
+    const triple = async (n1: number) => n1 * 3
 
     const transformValue = asyncPipeline(double, triple)
     const result = await transformValue(Promise.resolve(3))

@@ -8,6 +8,7 @@ Used to log any value. This is a shorthand to <b>console.log</b>.
 
 ```js
 import { log } from '@cahmoraes93/utils'
+
 log(1)
 //=> 1
 log('hello', 'world')
@@ -56,6 +57,7 @@ import { memo, log } from '@cahmoraes93/utils'
 const sum = (n1, n2) => n1 + n2
 
 const memoSum = memo(sum)
+
 log(memoSum(2, 3)) // insert this arguments and result in a internal cache
 //=> 5
 
@@ -78,8 +80,9 @@ import { partialize, log } from '@cahmoraes93/utils'
 const sum = (n1, n2) => n1 + n2
 
 const sum1To = partialize(sum, 1)
-log(sum1To(2)) // 3
-//=> 5
+
+log(sum1To(2))
+//=> 3
 
 const concatStrings = (arg1, arg2, arg3) => `${arg1 + arg2 + arg3}`
 
