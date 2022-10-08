@@ -4,7 +4,7 @@ This package consists of utility functions.
 
 ## Usage
 
-## path
+## path(Module, 'pathString')
 
 Used to get internal properties at arrays and objects.
 
