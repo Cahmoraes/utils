@@ -49,7 +49,7 @@ declare type MemoizedFn<T> = T & {
  */
 declare const memo: <K>(fn: K) => MemoizedFn<K>;
 
-declare type PartialFunction<T> = (...args: T[]) => T;
+declare type PartialFunction<T> = (...args: any[]) => T;
 /**
  * Apply pattern Partial Application
  * @date 08/10/2022 - 16:30:22
@@ -78,4 +78,7 @@ declare const typeOf: (elementToCheck: unknown) => any;
  */
 declare const isPrimitive: (element: unknown) => boolean;
 
-export { asyncPipeline, isPrimitive, log, memo, partialize, path, pipeline, typeOf };
+declare type Fn<T> = (...args: any[]) => T;
+declare const curry: <T>(fn: Fn<T>) => (...args: unknown[]) => any;
+
+export { asyncPipeline, curry, isPrimitive, log, memo, partialize, path, pipeline, typeOf };

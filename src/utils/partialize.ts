@@ -1,4 +1,4 @@
-type PartialFunction<T> = (...args: T[]) => T
+type PartialFunction<T> = (...args: any[]) => T
 
 /**
  * Apply pattern Partial Application

@@ -184,3 +184,26 @@ log(isPrimitive(0))
 log(isPrimitive(undefined))
 //=> true
 ```
+
+## curry(function)
+
+Used to create curried functions.
+Currying is a transformation of functions that translates a function from callable as f(a, b, c) into callable as f(a)(b)(c).
+The Curry function doesn’t call a function. It just transforms it.
+
+```js
+import { curry, log } from '@cahmoraes93/utils'
+
+const sum = (a, b, c) => {
+  return a + b + c
+}
+
+const curriedSum = curry(sum)
+
+log(curriedSum(1, 2, 3))
+//=> 6, still callable normally
+log(curriedSum(1)(2, 3))
+//=> 6, currying of 1st arg
+log(curriedSum(1)(2)(3))
+//=> 6, full currying
+```
