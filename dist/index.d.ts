@@ -78,7 +78,10 @@ declare const typeOf: (elementToCheck: unknown) => any;
  */
 declare const isPrimitive: (element: unknown) => boolean;
 
-declare type Fn<T> = (...args: any[]) => T;
-declare const curry: <T>(fn: Fn<T>) => (...args: unknown[]) => any;
+declare type Func$1<TS extends any[], R> = (...args: TS) => R;
+declare const curry: <T>(fn: Func$1<any[], any>) => (...args: unknown[]) => any;
 
-export { asyncPipeline, curry, isPrimitive, log, memo, partialize, path, pipeline, typeOf };
+declare type Func<TS extends any[], R> = (...args: TS) => R;
+declare const debounce: (fn: Func<any[], any>, milliseconds?: number) => (...args: unknown[]) => void;
+
+export { asyncPipeline, curry, debounce, isPrimitive, log, memo, partialize, path, pipeline, typeOf };

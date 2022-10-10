@@ -9,6 +9,9 @@ import {
 import { debounce } from '../src'
 
 describe('debounce test suite', () => {
+  jest.useFakeTimers()
+  jest.spyOn(global, 'setTimeout')
+
   beforeEach(() => {
     jest.spyOn(global, 'setTimeout')
   })
@@ -35,18 +38,20 @@ describe('debounce test suite', () => {
     const debounced = debounce(returnNumber)
 
     debounced(3)
-    // jest.runAllTimers()
-    ;(global.setTimeout as any).mockImplementation((callback) => callback())
+
+    // jest.runAllTimers()(global.setTimeout as any).mockImplementation((callback) => callback())
     expect(global.setTimeout).toBeCalledWith(expect.any(Function), 200)
   })
 
   it('should cancel scheduled callback', () => {
-    const returnNumber = (n1: number) => n1
+    const returnNumber = jest.fn((n1: number) => n1)
     const debounced = debounce(returnNumber)
 
     debounced(3)
     debounced(3)
-    ;(global.setTimeout as any).mockImplementation((callback) => callback())
+    jest.runAllTimers()
     expect(global.setTimeout).toBeCalledWith(expect.any(Function), 200)
+    expect(returnNumber).toBeCalledTimes(1)
+    expect(returnNumber).toBeCalledWith(3)
   })
 })
