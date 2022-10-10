@@ -207,3 +207,38 @@ log(curriedSum(1)(2, 3))
 log(curriedSum(1)(2)(3))
 //=> 6, full currying
 ```
+
+## debounce(callback, milliseconds = 200)
+
+Used to implements debounce pattern.
+This pattern schedules a task to fire in the future after a specified time. It guarantees that any call to the same function during this interval, the previous schedule will be canceled and a new schedule of the callback function will be made to fire after the scheduled time.
+
+Debounce pattern ensures that your code only fires once for each user input. Search box suggestions, automatic text box saves, and elimination of button double clicks are all use cases for debounce.
+
+<ul>
+  <li>
+    <b>callback</b>:
+    callback function that will be fired after only milliseconds quantity.
+  </li>
+  <li>
+    <b>milliseconds</b>:
+    milliseconds quantity that the callback will got wait until triggered.
+  </li>
+</ul>
+
+```js
+import { debounce, log } from '@cahmoraes93/utils'
+
+const doThing = () => {
+  log('hi!!')
+}
+
+const callback = debounce(doThing, 300)
+// the second parameter is optional. Default is 200
+
+callback() // <- this function will be cancelled
+callback() // <- this function will be cancelled
+callback() // <- this function will be cancelled
+callback() // <- only this function will be called after 300 milliseconds
+//=> hi!!
+```
