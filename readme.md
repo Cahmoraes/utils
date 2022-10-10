@@ -242,3 +242,36 @@ callback() // <- this function will be cancelled
 callback() // <- only this function will be called after 300 milliseconds
 //=> hi!!
 ```
+
+## takeUntil(callback, times = infinity)
+
+Used to create a function that can be called a certain number of times. If the number of calls is greater than the configured number of times, the undefined value will be returned.
+
+This function guarantees that your function will only be called a certain number of times. By default it can be activated infinite times.
+
+<ul>
+  <li>
+    <b>callback</b>:
+    callback function that will be fired a certain number of times.
+  </li>
+  <li>
+    <b>times</b>:
+    Number of times the callback can be triggered
+  </li>
+</ul>
+
+```js
+import { takeUntil, log } from '@cahmoraes93/utils'
+
+const doThing = () => {
+  log('hi!!')
+}
+
+const fn = takeUntil(doThing, 2)
+// the second parameter is optional. Default is 200
+
+fn() //=> 'hi!!'
+fn() //=> 'hi!!'
+fn() //=> undefined
+fn() //=> undefined
+```
