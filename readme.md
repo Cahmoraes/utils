@@ -367,6 +367,9 @@ Used to freeze recursively arrays and object structures.
 This function not creates a clone of element.
 
 This function use Object.freeze recursively in the structure param.
+To creates a deep clone with immutability, use:
+
+<pre>npm i @cahmoraes93/simple-immuter@latest</pre>
 
 <ul>
   <li>
@@ -390,8 +393,17 @@ const user = {
 
 const isFrozen = (obj) => Object.isFrozen(obj)
 
-const fn = deepFreeze(user)
-log(isFrozen(user)) //=> true
-log(isFrozen(user.address)) //=> true
-log(isFrozen(user.books)) //=> true
+deepFreeze(user)
+
+log(isFrozen(user))
+//=> true
+log(isFrozen(user.address))
+//=> true
+log(isFrozen(user.books))
+//=> true
+
+user.books.push('Rápido e Devagar - Duas Formas de Pensar')
+
+log(user.books)
+//=> ['sapiens']
 ```

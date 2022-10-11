@@ -109,8 +109,8 @@ declare const takeUntil: <T>(fn: Func<T>, until?: number) => (...args: unknown[]
  * @date 11/10/2022 - 14:39:31
  *
  * @param {T} data Array or Object Structure
- * @returns {T} freezed data
+ * @returns {Readonly<T>} freezed data
  */
-declare const deepFreeze: <T extends object>(data: T) => T;
+declare const deepFreeze: <T extends object>(data: T) => Readonly<T>;
 
 export { asyncPipeline, curry, debounce, deepFreeze, isPrimitive, log, memo, partialize, path, pipeline, takeUntil, typeOf };
