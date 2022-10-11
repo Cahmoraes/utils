@@ -78,8 +78,8 @@ declare const typeOf: (elementToCheck: unknown) => any;
  */
 declare const isPrimitive: (element: unknown) => boolean;
 
-declare type Func$2<TS extends any[], R> = (...args: TS) => R;
-declare const curry: <T>(fn: Func$2<any[], any>) => (...args: unknown[]) => any;
+declare type Func$2<T extends any[]> = (...args: T) => any;
+declare const curry: (fn: Func$2<any>) => Func$2<any[]>;
 
 declare type Func$1<TS extends any[], R> = (...args: TS) => R;
 declare const debounce: (fn: Func$1<any[], any>, milliseconds?: number) => (...args: unknown[]) => void;

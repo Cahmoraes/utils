@@ -1,13 +1,12 @@
-type Func<TS extends any[], R> = (...args: TS) => R
-type Curried<T> = (...args: any[]) => T
+type Func<T extends any[]> = (...args: T) => any
 
-export const curry = <T>(fn: Func<any[], any>) => {
-  return function curried(...args: unknown[]) {
+export const curry = (fn: Func<any>): Func<any[]> => {
+  return function curried(...args: any[]) {
     if (fn.length <= args.length) {
       return Reflect.apply(fn, null, args)
     } else {
       return (...args2: unknown[]) => {
-        return Reflect.apply(curried, null, args.concat(args2)) as Curried<T>
+        return Reflect.apply(curried, null, args.concat(args2))
       }
     }
   }
