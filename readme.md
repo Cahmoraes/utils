@@ -360,3 +360,38 @@ fn() //=> 'hi!!'
 fn() //=> undefined
 fn() //=> undefined
 ```
+
+## deepFreeze(structure)
+
+Used to freeze recursively arrays and object structures.
+This function not creates a clone of element.
+
+This function use Object.freeze recursively in the structure param.
+
+<ul>
+  <li>
+    <b>structure</b>:
+    Array or Object Structure to freeze.
+  </li>
+</ul>
+
+```js
+import { deepFreeze, log } from '@cahmoraes93/utils'
+
+const user = {
+  name: 'John Doe',
+  age: 29,
+  address: {
+    street: 'Baker',
+    number: null,
+  },
+  books: ['sapiens'],
+}
+
+const isFrozen = (obj) => Object.isFrozen(obj)
+
+const fn = deepFreeze(user)
+log(isFrozen(user)) //=> true
+log(isFrozen(user.address)) //=> true
+log(isFrozen(user.books)) //=> true
+```

@@ -82,9 +82,35 @@ declare type Func$2<T extends any[]> = (...args: T) => any;
 declare const curry: (fn: Func$2<any>) => Func$2<any[]>;
 
 declare type Func$1<TS extends any[], R> = (...args: TS) => R;
+/**
+ * This function implements debounce pattern
+ * @date 11/10/2022 - 14:40:38
+ *
+ * @param {Func<any[], any>} fn Function to apply debounce
+ * @param {number} [milliseconds=200] Time in milliseconds to schedule a function call
+ * @returns {(...args: {}) => void} Function with debounce pattern
+ */
 declare const debounce: (fn: Func$1<any[], any>, milliseconds?: number) => (...args: unknown[]) => void;
 
 declare type Func<T> = (...args: any[]) => T;
+/**
+ * Create a function that can be called a certain number of times. If the number of calls is greater than the configured number of times, the undefined value will be returned.
+ * @date 11/10/2022 - 14:42:51
+ *
+ * @template T
+ * @param {Func<T>} fn Function that will be called
+ * @param {*} [until=Infinity] Quantity of numbers that function can be called
+ * @returns {(...args: {}) => Func<T>} Configured Function with takeUntil
+ */
 declare const takeUntil: <T>(fn: Func<T>, until?: number) => (...args: unknown[]) => Func<T> | undefined;
 
-export { asyncPipeline, curry, debounce, isPrimitive, log, memo, partialize, path, pipeline, takeUntil, typeOf };
+/**
+ * freeze recursively arrays and object structures
+ * @date 11/10/2022 - 14:39:31
+ *
+ * @param {T} data Array or Object Structure
+ * @returns {T} freezed data
+ */
+declare const deepFreeze: <T extends object>(data: T) => T;
+
+export { asyncPipeline, curry, debounce, deepFreeze, isPrimitive, log, memo, partialize, path, pipeline, takeUntil, typeOf };
