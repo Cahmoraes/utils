@@ -1,5 +1,4 @@
 import { isPrimitive } from './isPrimitive'
-import { typeOf } from './typeOf'
 
 /**
  * freeze recursively arrays and object structures
@@ -26,10 +25,10 @@ const errors = new Map([
 ])
 
 const isMap = (element: unknown): element is Map<unknown, unknown> =>
-  typeOf(element) === 'map'
+  element instanceof Map
 
 const isSet = (element: unknown): element is Set<unknown> =>
-  typeOf(element) === 'set'
+  element instanceof Set
 
 const entries = (data: Map<unknown, unknown> | Set<unknown>) =>
   data.forEach((value: any) => deepFreeze(value))

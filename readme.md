@@ -374,7 +374,7 @@ To creates a deep clone with immutability, use:
 <ul>
   <li>
     <b>structure</b>:
-    Array or Object Structure to freeze.
+    Array, Map, Set or Object Structure to realize deep freeze.
   </li>
 </ul>
 

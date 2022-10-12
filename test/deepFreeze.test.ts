@@ -71,6 +71,7 @@ describe('deepFreeze test suite', () => {
 
     const freezed = deepFreeze(set)
 
+    expect(freezed).toBeInstanceOf(Set)
     expect(isFrozen(freezed)).toBeTruthy()
     expect(isFrozen(freezed.has(setObj))).toBeTruthy()
 
@@ -97,12 +98,18 @@ describe('deepFreeze test suite', () => {
 
     const freezed = deepFreeze(map)
 
+    expect(freezed).toBeInstanceOf(Map)
     expect(isFrozen(freezed)).toBeTruthy()
     expect(isFrozen(freezed.get('obj'))).toBeTruthy()
     expect(isFrozen(freezed.get('obj').set)).toBeTruthy()
     expect(isFrozen(freezed.get('obj').map)).toBeTruthy()
     expect(isFrozen(freezed.get('obj').array)).toBeTruthy()
     expect(isFrozen(freezed.get('obj').object)).toBeTruthy()
+
+    expect(freezed.get('obj').map).toBeInstanceOf(Map)
+    expect(freezed.get('obj').set).toBeInstanceOf(Set)
+    expect(freezed.get('obj').array).toBeInstanceOf(Array)
+    expect(freezed.get('obj').object).toBeInstanceOf(Object)
 
     expect(() => freezed.set('new key', 'new property')).toThrow()
     expect(() => freezed.get('obj').set.add('new value')).toThrow()

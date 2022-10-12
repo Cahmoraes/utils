@@ -2,7 +2,6 @@
  * Resolve internal Objects and Arrays paths. Return null when path not exists.
  * @date 08/10/2022 - 16:32:10
  *
- * @template T
  * @param {unknown} module - Object or Array
  * @param {string} pathString Path to property: 'addresses.0.street'
  * @returns {(T | null)} Existing property or null if none
