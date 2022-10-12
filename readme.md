@@ -363,8 +363,8 @@ fn() //=> undefined
 
 ## deepFreeze(structure)
 
-Used to freeze recursively arrays and object structures.
-This function not creates a clone of element.
+Used to freeze recursively Arrays, Objects, Maps and Sets structures.
+This function not creates a clone of structure passed by parameter.
 
 This function use Object.freeze recursively in the structure param.
 To creates a deep clone with immutability, use:
