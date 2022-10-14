@@ -408,9 +408,9 @@ log(user.books)
 //=> ['sapiens']
 ```
 
-## mixin(target, objects)
+## mixin(target, ...objects)
 
-Used to apply Mixin patterns.
+Used to apply Mixin pattern.
 This pattern is used to compose multiple objects into a target object.
 
 <ul>
