@@ -112,4 +112,6 @@ declare const takeUntil: <T>(fn: Func<T>, until?: number) => (...args: unknown[]
  */
 declare const deepFreeze: <T extends object>(data: T) => Readonly<T>;
 
-export { asyncPipeline, curry, debounce, deepFreeze, isPrimitive, log, memo, partialize, path, pipeline, takeUntil, typeOf };
+declare const mixin: <TResult = any>(target: object, ...objects: any[]) => TResult;
+
+export { asyncPipeline, curry, debounce, deepFreeze, isPrimitive, log, memo, mixin, partialize, path, pipeline, takeUntil, typeOf };

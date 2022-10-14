@@ -407,3 +407,59 @@ user.books.push('Rápido e Devagar - Duas Formas de Pensar')
 log(user.books)
 //=> ['sapiens']
 ```
+
+## mixin(target, objects)
+
+Used to apply Mixin patterns.
+This pattern is used to compose multiple objects into a target object.
+
+<ul>
+  <li>
+    <b>target</b>:
+    Target-object to receive the objects properties
+  </li>
+  <li>
+    <b>objects</b>:
+    One or more objects to compose in target-object.
+  </li>
+</ul>
+
+```js
+import { mixin, log } from '@cahmoraes93/utils'
+
+const user = {
+  name: 'John Doe',
+  age: 29,
+  address: {
+    street: 'Baker',
+    number: null,
+  },
+}
+
+const job = {
+  greeting() {
+    return `Hello, my name's ${this.name}`
+  },
+}
+
+const result = mixin(user, job, { hobbies: ['books'] })
+
+log(result)
+/*
+{
+  name: 'John Doe',
+  age: 29,
+  address: {
+    street: 'Baker',
+    number: null,
+  },
+  greeting() {
+    return `Hello, my name's ${this.name}`
+  },
+  hobbies: ['books']
+}
+*/
+
+log(result.greeting())
+//=> Hello, my name's John Doe
+```
