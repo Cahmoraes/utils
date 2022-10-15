@@ -25,7 +25,9 @@ log('hello', 'world')
 
 ## path(Module, 'pathString')
 
-Used to get internal properties at arrays and objects.
+Used to get internal properties of arrays and objects. If within the path string, any property returns null or undefined, null will be returned from the path function. This function facilitates internal navigation between properties with high levels of nesting.
+
+This function prevents an error from being raised when trying to access a property with a null or undefined value.
 
 <ul>
   <li>
@@ -46,6 +48,12 @@ const obj = {
     street: 'Baker',
   },
   hobbies: ['books', 'games'],
+  phone: {
+    mobile: {
+      0: '998945613',
+      1: '998955547',
+    },
+  },
 }
 
 const address = path(obj, 'address')
@@ -58,14 +66,24 @@ const street = path(obj, 'address.street')
 log(street)
 //=> Baker
 
+const mobile = path(obj, 'phone.mobile.0')
+
+log(mobile)
+//=> 998945613
+
+const nothing_1 = path(obj, 'phone.nothing.mobile.0')
+
+log(nothing_1)
+//=> null
+
 const hobby = path(obj, 'hobbies.0')
 
 log(hobby)
 //=> books
 
-const nothing = path(obj, 'nothing')
+const nothing_2 = path(obj, 'nothing')
 
-log(nothing)
+log(nothing_2)
 //=> null
 ```
 
