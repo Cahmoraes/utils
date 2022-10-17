@@ -1,6 +1,6 @@
 # Motivation
 
-This package was inspired in Functional Programming Paradigm and consists of powerful utility small functions to resolve simple and complex problems.
+This package was inspired by the Functional Programming Paradigm and consists of small utility functions to resolve simple and complex problems.
 
 ## log(...args)
 
@@ -25,18 +25,18 @@ log('hello', 'world')
 
 ## path(Module, 'pathString')
 
-Used to get internal properties of arrays and objects. If within the path string, any property returns null or undefined, null will be returned from the path function. This function facilitates internal navigation between properties with high levels of nesting.
+It is used to get internal properties of arrays and objects. If within the path string, any property returns null or undefined, null will be returned from the path function. This function facilitates internal navigation between properties with high levels of nesting.
 
 This function prevents an error from being raised when trying to access a property with a null or undefined value.
 
 <ul>
   <li>
     <b>Module</b>:
-    Data Structure: Array or Object.
+    Data Structure: Array or Object
   </li>
   <li>
     <b>pathString</b>:
-    Representational string to the path of value in Module parameter.
+    A string that represents the path of the value in a module parameter.
   </li>
 </ul>
 
@@ -89,8 +89,8 @@ log(nothing_2)
 
 ## memo(function)
 
-Used to memo a value of a pure function. This function implements memo pattern.
-to clear the cache, call the clear method.
+Used to memo a value of a pure function. This function implements the memo pattern.
+To clear the cache, call the clear method.
 
 <ul>
   <li>
@@ -120,8 +120,8 @@ log(memoSum(2, 3)) // obtained from cache
 
 ## partialize(function, ...args)
 
-Used to apply pattern partial application.
-Partialize receives a function to partialize, and args to apply and return a new partial function. This pattern is used to obtain the lazy evaluation.
+Used to apply a pattern of partial application.
+Partialize receives a function to partialize and args to apply and return a new partial function. This pattern is used to obtain a lazy evaluation.
 
 <ul>
   <li>
@@ -130,7 +130,7 @@ Partialize receives a function to partialize, and args to apply and return a new
   </li>
   <li>
     <b>args</b>:
-    Parameters of function that will partialize.
+    Parameters of the function that will be partialized.
   </li>
 </ul>
 
@@ -153,25 +153,24 @@ log(myNameIs('Bond')) // My name is Bond
 
 ## pipe(...fns)(value)
 
-Used to apply pipeline in a value.
-Pipe implements the composition principle of mathematical, where you can compose functions to create a new function, like this example:
+Used to implement pipeline in a value
+Pipe implements the composition principle of mathematics, where you can compose functions to create a new function, like in this example:
 
 <pre>h = f . g = f(g(x)).</pre>
 
-Each function in pipeline should receive the value passed from previous function, that is mapped by the others functions in pipeline.
+Each function in the pipeline should receive the value passed from the previous function, which is mapped by the other functions in the pipeline.
+<b>This pipe function is not working with promises. For this, use the asyncPipe function.</b>
 
-<b>This pipe function not working with Promises. To this, use asyncPipe function.</b>
-
-This transformation occurs from the left to right.
+This transformation occurs from left to right.
 
 <ul>
   <li>
     <b>fns</b>:
-    One or more callback function to transform the value in pipeline.
+    One or more callback functions to transform the value in the pipeline.
   </li>
   <li>
     <b>value</b>:
-    Value to will be transform at the pipeline.
+    Value that will be transform at the pipeline.
   </li>
 </ul>
 
@@ -190,19 +189,19 @@ log(result)
 
 ## asyncPipe(...fns)(value)
 
-Used to apply async pipeline in a value. It's a async version of pipe function, however it's work with Promises.
-Each function in pipeline should receive the value passed from previous function, that is mapped by the others functions in pipeline.
+used to apply an async pipeline to a value. It's an async version of the pipe function, but it works with promises.
+Each function in the pipeline should receive the value passed from the previous function, which is mapped by the other functions in the pipeline.
 
-This transformation occurs from the left to right.
+This transformation occurs from left to right.
 
 <ul>
   <li>
     <b>fns</b>:
-    One or more callback function to transform the value in pipeline.
+    One or more callback functions to transform the value in the pipeline.
   </li>
   <li>
     <b>value</b>:
-    Value to will be transform at the pipeline.
+    value to be transformed in the pipeline 
   </li>
 </ul>
 
@@ -221,16 +220,14 @@ log(result)
 
 ## typeOf(element)
 
-Used to check data type of a given element.
-this function recognizes the difference between null and object.
+used to check the data type of a given element.
+This function recognizes the difference between null and an object.
 Return a representational string of a given data type.
-
-This transformation occurs from the left to right.
 
 <ul>
   <li>
     <b>element</b>:
-    Element to check type.
+    Element type to check.
   </li>
 </ul>
 
@@ -255,12 +252,12 @@ log(typeOf(undefined))
 
 ## isPrimitive(element)
 
-Used to check if a given data type, is a primitive or non-primitive data type.
+Used to check if a given data type is a primitive or non-primitive data type.
 
 <ul>
   <li>
     <b>element</b>:
-    Element to check if is primitive.
+    Element to check if it is primitive.
   </li>
 </ul>
 
@@ -290,7 +287,7 @@ The Curry function doesn’t call a function. It just transforms it.
 <ul>
   <li>
     <b>function</b>:
-    Function to apply curry pattern.
+    Function that to apply curry pattern.
   </li>
 </ul>
 
@@ -313,19 +310,19 @@ log(curriedSum(1)(2)(3))
 
 ## debounce(callback, milliseconds = 200)
 
-Used to implements debounce pattern.
-This pattern schedules a task to fire in the future after a specified time. It guarantees that any call to the same function during this interval, the previous schedule will be canceled and a new schedule of the callback function will be made to fire after the scheduled time.
+Used to implement a debounce pattern.
+This pattern schedules a task to fire in the future after a specified time. It guarantees that any call to the same function during this interval will be canceled, and a new schedule for the callback function will be fired after the scheduled time.
 
-Debounce pattern ensures that your code only fires once for each user input. Search box suggestions, automatic text box saves, and elimination of button double clicks are all use cases for debounce.
+The debouncing pattern ensures that your code only fires once for each user input. Search box suggestions, automatic text box saves, and the elimination of button double clicks are all use cases for debounce.
 
 <ul>
   <li>
     <b>callback</b>:
-    callback function that will be fired after only milliseconds quantity.
+    callback function that will be fired after only milliseconds.
   </li>
   <li>
     <b>milliseconds</b>:
-    milliseconds quantity that the callback will got wait until triggered.
+    The milliseconds quantity that callback will wait until triggered.
   </li>
 </ul>
 
@@ -350,16 +347,16 @@ callback() // <- only this function will be called after 300 milliseconds
 
 Used to create a function that can be called a certain number of times. If the number of calls is greater than the configured number of times, the undefined value will be returned.
 
-This function guarantees that your function will only be called a certain number of times. By default it can be activated infinite times.
+This function guarantees that your function will only be called a certain number of times. By default, it can be activated infinite times.
 
 <ul>
   <li>
     <b>callback</b>:
-    callback function that will be fired a certain number of times.
+    A callback function will be fired a certain number of times.
   </li>
   <li>
     <b>times</b>:
-    Number of times the callback can be triggered
+    Number of times the function can be called
   </li>
 </ul>
 
@@ -381,18 +378,18 @@ fn() //=> undefined
 
 ## deepFreeze(structure)
 
-Used to freeze recursively Arrays, Objects, Maps and Sets structures.
-This function not creates a clone of structure passed by parameter.
+It is used to recursively freeze arrays, objects, maps, and structures sets.
+This function does not create a clone of the structure passed by parameter.
 
-This function use Object.freeze recursively in the structure param.
-To creates a deep clone with immutability, use:
+This function use Object.freezes recursively in the structure param.
+To create a deep clone with immutability, use:
 
 <pre>npm i @cahmoraes93/simple-immuter@latest</pre>
 
 <ul>
   <li>
     <b>structure</b>:
-    Array, Map, Set or Object Structure to realize deep freeze.
+    Array, Map, Set, or Object Structure to realize Deep Freeze.
   </li>
 </ul>
 
@@ -428,17 +425,17 @@ log(user.books)
 
 ## mixin(target, ...objects)
 
-Used to apply Mixin pattern.
+Used to apply the mixin pattern.
 This pattern is used to compose multiple objects into a target object.
 
 <ul>
   <li>
     <b>target</b>:
-    Target-object to receive the objects properties
+    Target-object to receive the objects' properties.
   </li>
   <li>
     <b>objects</b>:
-    One or more objects to compose in target-object.
+    In target-object, one or more objects must be composed.
   </li>
 </ul>
 
