@@ -30,4 +30,13 @@ describe('pipe test suite', () => {
 
     expect(result).toEqual(value.toLocaleUpperCase().split(''))
   })
+
+  it('pipe should return a value transformed using 3 operations', () => {
+    const fn_1 = (value: string) => Number(value)
+    const value = '1'
+
+    const result = pipe(fn_1)(value)
+
+    expect(result).toEqual(Number(value.toLocaleUpperCase()))
+  })
 })

@@ -9,7 +9,9 @@ describe('asyncPipe test suite', () => {
 
     const value = Promise.resolve(5)
 
-    await asyncPipe(fn_1, fn_2)(value)
+    const result = await asyncPipe(fn_1, fn_2)(value)
+
+    console.log('result', result)
 
     expect(fn_1).toHaveBeenCalledTimes(1)
     expect(fn_1).toHaveBeenCalledWith(await value)
@@ -19,9 +21,9 @@ describe('asyncPipe test suite', () => {
   })
 
   it('asyncPipe should return a function when its called', async () => {
-    const fn_1 = jest.fn(() => 2)
+    const fn_1 = jest.fn(() => Promise.resolve(2))
 
-    const fn_2 = jest.fn(() => 5)
+    const fn_2 = jest.fn(() => Promise.resolve(2))
 
     const value = 5
 
