@@ -1,6 +1,6 @@
 # Motivation
 
-This package was inspired in Functional Programming Paradigm and consists of utility small functions to resolve simple and complex problems.
+This package was inspired in Functional Programming Paradigm and consists of powerful utility small functions to resolve simple and complex problems.
 
 ## log(...args)
 
@@ -121,7 +121,7 @@ log(memoSum(2, 3)) // obtained from cache
 ## partialize(function, ...args)
 
 Used to apply pattern partial application.
-Partialize receives a function to partialize, and args to apply and return a new partial function. This patterns is used to obtain the lazy evaluation.
+Partialize receives a function to partialize, and args to apply and return a new partial function. This pattern is used to obtain the lazy evaluation.
 
 <ul>
   <li>
@@ -151,16 +151,16 @@ const myNameIs = partialize(concatStrings, 'My name ', 'is ')
 log(myNameIs('Bond')) // My name is Bond
 ```
 
-## pipeline(...fns)(value)
+## pipe(...fns)(value)
 
 Used to apply pipeline in a value.
-Pipeline implements the composition principle of mathematical, where you can compose functions to create a new function, like this example:
+Pipe implements the composition principle of mathematical, where you can compose functions to create a new function, like this example:
 
 <pre>h = f . g = f(g(x)).</pre>
 
 Each function in pipeline should receive the value passed from previous function, that is mapped by the others functions in pipeline.
 
-<b>This pipeline function not working with Promises. To this, use asyncPipeline function.</b>
+<b>This pipe function not working with Promises. To this, use asyncPipe function.</b>
 
 This transformation occurs from the left to right.
 
@@ -176,21 +176,21 @@ This transformation occurs from the left to right.
 </ul>
 
 ```js
-import { pipeline, log } from '@cahmoraes93/utils'
+import { pipe, log } from '@cahmoraes93/utils'
 
 const double = (n1) => n1 * 2
 const triple = (n1) => n1 * 3
 
-const transformValue = pipeline(double, triple)
+const transformValue = pipe(double, triple)
 const result = transformValue(3)
 
 log(result)
 //=> 18
 ```
 
-## asyncPipeline(...fns)(value)
+## asyncPipe(...fns)(value)
 
-Used to apply async pipeline in a value. It's a async version of pipeline function, however it's work with Promises.
+Used to apply async pipeline in a value. It's a async version of pipe function, however it's work with Promises.
 Each function in pipeline should receive the value passed from previous function, that is mapped by the others functions in pipeline.
 
 This transformation occurs from the left to right.
@@ -207,12 +207,12 @@ This transformation occurs from the left to right.
 </ul>
 
 ```js
-import { asyncPipeline, log } from '@cahmoraes93/utils'
+import { asyncPipe, log } from '@cahmoraes93/utils'
 
 const double = (n1) => Promise.resolve(n1 * 2)
 const triple = (n1) => Promise.resolve(n1 * 3)
 
-const transformValue = asyncPipeline(double, triple)
+const transformValue = asyncPipe(double, triple)
 const result = await transformValue(Promise.resolve(3))
 
 log(result)

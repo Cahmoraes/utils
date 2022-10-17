@@ -23,7 +23,7 @@ declare const log: (...args: unknown[]) => void;
  * @param {...CallableFunction[]} fns Function or functions to pipeline
  * @returns {<T>(value: T) => any} Function with value to transform
  */
-declare const pipeline: (...fns: CallableFunction[]) => <T>(value: T) => T;
+declare const pipe: (...fns: CallableFunction[]) => <T>(value: T) => T;
 
 declare type Callback<T> = (value: T) => T | Promise<T>;
 /**
@@ -34,7 +34,7 @@ declare type Callback<T> = (value: T) => T | Promise<T>;
  * @param {...Callback<K>[]} fns Function or functions to pipeline
  * @returns {(value: any) => any} Function with value to transform
  */
-declare const asyncPipeline: <K>(...fns: Callback<K>[]) => (value: K | Promise<K>) => K | Promise<K>;
+declare const asyncPipe: <K>(...fns: Callback<K>[]) => (value: K | Promise<K>) => K | Promise<K>;
 
 declare type MemoizedFn<T> = T & {
     clear: () => void;
@@ -114,4 +114,4 @@ declare const deepFreeze: <T extends object>(data: T) => Readonly<T>;
 
 declare const mixin: <TResult = any>(target: object, ...objects: any[]) => TResult;
 
-export { asyncPipeline, curry, debounce, deepFreeze, isPrimitive, log, memo, mixin, partialize, path, pipeline, takeUntil, typeOf };
+export { asyncPipe, curry, debounce, deepFreeze, isPrimitive, log, memo, mixin, partialize, path, pipe, takeUntil, typeOf };
