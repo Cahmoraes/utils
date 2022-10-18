@@ -54,6 +54,42 @@ export function asyncPipe<A, B, C, D, E, F, G, H>(
   op7: (input: G) => Promise<H>,
 ): (value: Promise<A> | A) => Promise<H>
 
+export function asyncPipe<A, B, C, D, E, F, G, H, I>(
+  op1: (input: A) => Promise<B>,
+  op2: (input: B) => Promise<C>,
+  op3: (input: C) => Promise<D>,
+  op4: (input: D) => Promise<E>,
+  op5: (input: E) => Promise<F>,
+  op6: (input: F) => Promise<G>,
+  op7: (input: G) => Promise<H>,
+  op8: (input: H) => Promise<I>,
+): (value: Promise<A> | A) => Promise<I>
+
+export function asyncPipe<A, B, C, D, E, F, G, H, I, J>(
+  op1: (input: A) => Promise<B>,
+  op2: (input: B) => Promise<C>,
+  op3: (input: C) => Promise<D>,
+  op4: (input: D) => Promise<E>,
+  op5: (input: E) => Promise<F>,
+  op6: (input: F) => Promise<G>,
+  op7: (input: G) => Promise<H>,
+  op8: (input: H) => Promise<I>,
+  op9: (input: I) => Promise<J>,
+): (value: Promise<A> | A) => Promise<J>
+
+export function asyncPipe<A, B, C, D, E, F, G, H, I, J, K>(
+  op1: (input: A) => Promise<B>,
+  op2: (input: B) => Promise<C>,
+  op3: (input: C) => Promise<D>,
+  op4: (input: D) => Promise<E>,
+  op5: (input: E) => Promise<F>,
+  op6: (input: F) => Promise<G>,
+  op7: (input: G) => Promise<H>,
+  op8: (input: H) => Promise<I>,
+  op9: (input: I) => Promise<J>,
+  op10: (input: J) => Promise<K>,
+): (value: Promise<A> | A) => Promise<K>
+
 export function asyncPipe(...operations: readonly ((input: any) => any)[]) {
   return (value: any | Promise<any>) =>
     operations.reduce(async (acc, fn) => {

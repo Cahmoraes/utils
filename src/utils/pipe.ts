@@ -53,6 +53,42 @@ export function pipe<A, B, C, D, E, F, G, H>(
   op7: (input: G) => H,
 ): (value: A) => H
 
+export function pipe<A, B, C, D, E, F, G, H, I>(
+  op1: (input: A) => B,
+  op2: (input: B) => C,
+  op3: (input: C) => D,
+  op4: (input: D) => E,
+  op5: (input: E) => F,
+  op6: (input: F) => G,
+  op7: (input: G) => H,
+  op8: (input: H) => I,
+): (value: A) => I
+
+export function pipe<A, B, C, D, E, F, G, H, I, J>(
+  op1: (input: A) => B,
+  op2: (input: B) => C,
+  op3: (input: C) => D,
+  op4: (input: D) => E,
+  op5: (input: E) => F,
+  op6: (input: F) => G,
+  op7: (input: G) => H,
+  op8: (input: H) => I,
+  op9: (input: I) => J,
+): (value: A) => J
+
+export function pipe<A, B, C, D, E, F, G, H, I, J, K>(
+  op1: (input: A) => B,
+  op2: (input: B) => C,
+  op3: (input: C) => D,
+  op4: (input: D) => E,
+  op5: (input: E) => F,
+  op6: (input: F) => G,
+  op7: (input: G) => H,
+  op8: (input: H) => I,
+  op9: (input: I) => J,
+  op10: (input: J) => K,
+): (value: A) => K
+
 export function pipe(...operations: readonly ((input: any) => any)[]) {
   return (value: any) => operations.reduce((acc, fn) => fn(acc), value)
 }
