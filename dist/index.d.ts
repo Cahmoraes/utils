@@ -23,29 +23,35 @@ declare const log: (...args: unknown[]) => void;
  * @param {...operations[]} operations Function or functions to pipeline
  * @returns {<T>(value: any) => any} Function with value to transform
  */
-declare function pipe<A, B>(op1: (input: A) => B): (value: A) => B;
-declare function pipe<A, B, C>(op1: (input: A) => B, op2: (input: B) => C): (value: A) => C;
-declare function pipe<A, B, C, D>(op1: (input: A) => B, op2: (input: B) => C, op3: (input: C) => D): (value: A) => D;
-declare function pipe<A, B, C, D, E>(op1: (input: A) => B, op2: (input: B) => C, op3: (input: C) => D, op4: (input: D) => E): (value: A) => E;
-declare function pipe<A, B, C, D, E, F>(op1: (input: A) => B, op2: (input: B) => C, op3: (input: C) => D, op4: (input: D) => E, op5: (input: E) => F): (value: A) => F;
-declare function pipe<A, B, C, D, E, F, G>(op1: (input: A) => B, op2: (input: B) => C, op3: (input: C) => D, op4: (input: D) => E, op5: (input: E) => F, op6: (input: F) => G): (value: A) => G;
-declare function pipe<A, B, C, D, E, F, G, H>(op1: (input: A) => B, op2: (input: B) => C, op3: (input: C) => D, op4: (input: D) => E, op5: (input: E) => F, op6: (input: F) => G, op7: (input: G) => H): (value: A) => H;
+declare function createPipe<A, B>(op1: (input: A) => B): (value: A) => B;
+declare function createPipe<A, B, C>(op1: (input: A) => B, op2: (input: B) => C): (value: A) => C;
+declare function createPipe<A, B, C, D>(op1: (input: A) => B, op2: (input: B) => C, op3: (input: C) => D): (value: A) => D;
+declare function createPipe<A, B, C, D, E>(op1: (input: A) => B, op2: (input: B) => C, op3: (input: C) => D, op4: (input: D) => E): (value: A) => E;
+declare function createPipe<A, B, C, D, E, F>(op1: (input: A) => B, op2: (input: B) => C, op3: (input: C) => D, op4: (input: D) => E, op5: (input: E) => F): (value: A) => F;
+declare function createPipe<A, B, C, D, E, F, G>(op1: (input: A) => B, op2: (input: B) => C, op3: (input: C) => D, op4: (input: D) => E, op5: (input: E) => F, op6: (input: F) => G): (value: A) => G;
+declare function createPipe<A, B, C, D, E, F, G, H>(op1: (input: A) => B, op2: (input: B) => C, op3: (input: C) => D, op4: (input: D) => E, op5: (input: E) => F, op6: (input: F) => G, op7: (input: G) => H): (value: A) => H;
+declare function createPipe<A, B, C, D, E, F, G, H, I>(op1: (input: A) => B, op2: (input: B) => C, op3: (input: C) => D, op4: (input: D) => E, op5: (input: E) => F, op6: (input: F) => G, op7: (input: G) => H, op8: (input: H) => I): (value: A) => I;
+declare function createPipe<A, B, C, D, E, F, G, H, I, J>(op1: (input: A) => B, op2: (input: B) => C, op3: (input: C) => D, op4: (input: D) => E, op5: (input: E) => F, op6: (input: F) => G, op7: (input: G) => H, op8: (input: H) => I, op9: (input: I) => J): (value: A) => J;
+declare function createPipe<A, B, C, D, E, F, G, H, I, J, K>(op1: (input: A) => B, op2: (input: B) => C, op3: (input: C) => D, op4: (input: D) => E, op5: (input: E) => F, op6: (input: F) => G, op7: (input: G) => H, op8: (input: H) => I, op9: (input: I) => J, op10: (input: J) => K): (value: A) => K;
 
 /**
- * Apply async pipeline to a value
+ * Create Apply async pipeline to a value
  * @date 08/10/2022 - 16:36:26
  *
  * @template K
  * @param {...Callback<K>[]} fns Function or functions to pipeline
  * @returns {(value: any) => any} Function with value to transform
  */
-declare function asyncPipe<A, B>(op1: (input: A) => B): (value: A) => B;
-declare function asyncPipe<A, B, C>(op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>): (value: Promise<A> | A) => Promise<C>;
-declare function asyncPipe<A, B, C, D>(op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>): (value: Promise<A> | A) => Promise<D>;
-declare function asyncPipe<A, B, C, D, E>(op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => Promise<E>): (value: Promise<A> | A) => Promise<E>;
-declare function asyncPipe<A, B, C, D, E, F>(op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => Promise<E>, op5: (input: E) => Promise<F>): (value: Promise<A> | A) => Promise<F>;
-declare function asyncPipe<A, B, C, D, E, F, G>(op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => E, op5: (input: E) => Promise<F>, op6: (input: F) => Promise<G>): (value: Promise<A> | A) => Promise<G>;
-declare function asyncPipe<A, B, C, D, E, F, G, H>(op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => Promise<E>, op5: (input: E) => Promise<F>, op6: (input: F) => Promise<G>, op7: (input: G) => Promise<H>): (value: Promise<A> | A) => Promise<H>;
+declare function createAsyncPipe<A, B>(op1: (input: A) => B): (value: Promise<A> | A) => B;
+declare function createAsyncPipe<A, B, C>(op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>): (value: Promise<A> | A) => Promise<C>;
+declare function createAsyncPipe<A, B, C, D>(op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>): (value: Promise<A> | A) => Promise<D>;
+declare function createAsyncPipe<A, B, C, D, E>(op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => Promise<E>): (value: Promise<A> | A) => Promise<E>;
+declare function createAsyncPipe<A, B, C, D, E, F>(op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => Promise<E>, op5: (input: E) => Promise<F>): (value: Promise<A> | A) => Promise<F>;
+declare function createAsyncPipe<A, B, C, D, E, F, G>(op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => E, op5: (input: E) => Promise<F>, op6: (input: F) => Promise<G>): (value: Promise<A> | A) => Promise<G>;
+declare function createAsyncPipe<A, B, C, D, E, F, G, H>(op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => Promise<E>, op5: (input: E) => Promise<F>, op6: (input: F) => Promise<G>, op7: (input: G) => Promise<H>): (value: Promise<A> | A) => Promise<H>;
+declare function createAsyncPipe<A, B, C, D, E, F, G, H, I>(op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => Promise<E>, op5: (input: E) => Promise<F>, op6: (input: F) => Promise<G>, op7: (input: G) => Promise<H>, op8: (input: H) => Promise<I>): (value: Promise<A> | A) => Promise<I>;
+declare function createAsyncPipe<A, B, C, D, E, F, G, H, I, J>(op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => Promise<E>, op5: (input: E) => Promise<F>, op6: (input: F) => Promise<G>, op7: (input: G) => Promise<H>, op8: (input: H) => Promise<I>, op9: (input: I) => Promise<J>): (value: Promise<A> | A) => Promise<J>;
+declare function createAsyncPipe<A, B, C, D, E, F, G, H, I, J, K>(op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => Promise<E>, op5: (input: E) => Promise<F>, op6: (input: F) => Promise<G>, op7: (input: G) => Promise<H>, op8: (input: H) => Promise<I>, op9: (input: I) => Promise<J>, op10: (input: J) => Promise<K>): (value: Promise<A> | A) => Promise<K>;
 
 declare type MemoizedFn<T> = T & {
     clear: () => void;
@@ -125,4 +131,42 @@ declare const deepFreeze: <T extends object>(data: T) => Readonly<T>;
 
 declare const mixin: <TResult = any>(target: object, ...objects: any[]) => TResult;
 
-export { asyncPipe, curry, debounce, deepFreeze, isPrimitive, log, memo, mixin, partialize, path, pipe, takeUntil, typeOf };
+/**
+ * Apply pipeline to a value
+ * @date 18/10/2022 - 10:23:41
+ *
+ * @param {A} value Value that will transformed by pipeline
+ * @param {...operations[]} operations Function or functions to pipeline
+ * @returns Value transformed by pipeline
+ */
+declare function pipe<A, B>(value: A, op1: (input: A) => B): B;
+declare function pipe<A, B, C>(value: A, op1: (input: A) => B, op2: (input: B) => C): C;
+declare function pipe<A, B, C, D>(value: A, op1: (input: A) => B, op2: (input: B) => C, op3: (input: C) => D): D;
+declare function pipe<A, B, C, D, E>(value: A, op1: (input: A) => B, op2: (input: B) => C, op3: (input: C) => D, op4: (input: D) => E): E;
+declare function pipe<A, B, C, D, E, F>(value: A, op1: (input: A) => B, op2: (input: B) => C, op3: (input: C) => D, op4: (input: D) => E, op5: (input: E) => F): F;
+declare function pipe<A, B, C, D, E, F, G>(value: A, op1: (input: A) => B, op2: (input: B) => C, op3: (input: C) => D, op4: (input: D) => E, op5: (input: E) => F, op6: (input: F) => G): G;
+declare function pipe<A, B, C, D, E, F, G, H>(value: A, op1: (input: A) => B, op2: (input: B) => C, op3: (input: C) => D, op4: (input: D) => E, op5: (input: E) => F, op6: (input: F) => G, op7: (input: G) => H): H;
+declare function pipe<A, B, C, D, E, F, G, H, I>(value: A, op1: (input: A) => B, op2: (input: B) => C, op3: (input: C) => D, op4: (input: D) => E, op5: (input: E) => F, op6: (input: F) => G, op7: (input: G) => H, op8: (input: H) => I): I;
+declare function pipe<A, B, C, D, E, F, G, H, I, J>(value: A, op1: (input: A) => B, op2: (input: B) => C, op3: (input: C) => D, op4: (input: D) => E, op5: (input: E) => F, op6: (input: F) => G, op7: (input: G) => H, op8: (input: H) => I, op9: (input: I) => J): J;
+declare function pipe<A, B, C, D, E, F, G, H, I, J, K>(value: A, op1: (input: A) => B, op2: (input: B) => C, op3: (input: C) => D, op4: (input: D) => E, op5: (input: E) => F, op6: (input: F) => G, op7: (input: G) => H, op8: (input: H) => I, op9: (input: I) => J, op10: (input: J) => K): K;
+
+/**
+ * Apply async pipeline to a value
+ * @date 18/10/2022 - 10:23:41
+ *
+ * @param {A} value Value that will transformed by pipeline
+ * @param {...operations[]} operations Function or functions to pipeline
+ * @returns Value transformed by asyncPipeline
+ */
+declare function asyncPipe<A, B>(value: Promise<A> | A, op1: (input: A) => B): B;
+declare function asyncPipe<A, B, C>(value: Promise<A> | A, op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>): Promise<C>;
+declare function asyncPipe<A, B, C, D>(value: Promise<A> | A, op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>): Promise<D>;
+declare function asyncPipe<A, B, C, D, E>(value: Promise<A> | A, op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => Promise<E>): Promise<E>;
+declare function asyncPipe<A, B, C, D, E, F>(value: Promise<A> | A, op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => Promise<E>, op5: (input: E) => Promise<F>): Promise<F>;
+declare function asyncPipe<A, B, C, D, E, F, G>(value: Promise<A> | A, op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => E, op5: (input: E) => Promise<F>, op6: (input: F) => Promise<G>): Promise<G>;
+declare function asyncPipe<A, B, C, D, E, F, G, H>(value: Promise<A> | A, op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => Promise<E>, op5: (input: E) => Promise<F>, op6: (input: F) => Promise<G>, op7: (input: G) => Promise<H>): Promise<H>;
+declare function asyncPipe<A, B, C, D, E, F, G, H, I>(value: Promise<A> | A, op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => Promise<E>, op5: (input: E) => Promise<F>, op6: (input: F) => Promise<G>, op7: (input: G) => Promise<H>, op8: (input: H) => Promise<I>): Promise<I>;
+declare function asyncPipe<A, B, C, D, E, F, G, H, I, J>(value: Promise<A> | A, op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => Promise<E>, op5: (input: E) => Promise<F>, op6: (input: F) => Promise<G>, op7: (input: G) => Promise<H>, op8: (input: H) => Promise<I>, op9: (input: I) => Promise<J>): Promise<J>;
+declare function asyncPipe<A, B, C, D, E, F, G, H, I, J, K>(value: Promise<A> | A, op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => Promise<E>, op5: (input: E) => Promise<F>, op6: (input: F) => Promise<G>, op7: (input: G) => Promise<H>, op8: (input: H) => Promise<I>, op9: (input: I) => Promise<J>, op10: (input: J) => Promise<K>): Promise<K>;
+
+export { asyncPipe, createAsyncPipe, createPipe, curry, debounce, deepFreeze, isPrimitive, log, memo, mixin, partialize, path, pipe, takeUntil, typeOf };

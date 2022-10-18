@@ -1,56 +1,51 @@
 /**
  * Apply pipeline to a value
- * @date 18/10/2022 - 10:23:41
+ * @date 08/10/2022 - 16:35:18
  *
- * @param {A} value Value that will transformed by pipeline
  * @param {...operations[]} operations Function or functions to pipeline
- * @returns Value transformed by pipeline
+ * @returns {<T>(value: any) => any} Function with value to transform
  */
 
-export function pipe<A, B>(value: A, op1: (input: A) => B): B
+import { pipe } from './pipe'
 
-export function pipe<A, B, C>(
-  value: A,
+export function createPipe<A, B>(op1: (input: A) => B): (value: A) => B
+
+export function createPipe<A, B, C>(
   op1: (input: A) => B,
   op2: (input: B) => C,
-): C
+): (value: A) => C
 
-export function pipe<A, B, C, D>(
-  value: A,
+export function createPipe<A, B, C, D>(
   op1: (input: A) => B,
   op2: (input: B) => C,
   op3: (input: C) => D,
-): D
+): (value: A) => D
 
-export function pipe<A, B, C, D, E>(
-  value: A,
+export function createPipe<A, B, C, D, E>(
   op1: (input: A) => B,
   op2: (input: B) => C,
   op3: (input: C) => D,
   op4: (input: D) => E,
-): E
+): (value: A) => E
 
-export function pipe<A, B, C, D, E, F>(
-  value: A,
+export function createPipe<A, B, C, D, E, F>(
   op1: (input: A) => B,
   op2: (input: B) => C,
   op3: (input: C) => D,
   op4: (input: D) => E,
   op5: (input: E) => F,
-): F
+): (value: A) => F
 
-export function pipe<A, B, C, D, E, F, G>(
-  value: A,
+export function createPipe<A, B, C, D, E, F, G>(
   op1: (input: A) => B,
   op2: (input: B) => C,
   op3: (input: C) => D,
   op4: (input: D) => E,
   op5: (input: E) => F,
   op6: (input: F) => G,
-): G
+): (value: A) => G
 
-export function pipe<A, B, C, D, E, F, G, H>(
-  value: A,
+export function createPipe<A, B, C, D, E, F, G, H>(
   op1: (input: A) => B,
   op2: (input: B) => C,
   op3: (input: C) => D,
@@ -58,10 +53,9 @@ export function pipe<A, B, C, D, E, F, G, H>(
   op5: (input: E) => F,
   op6: (input: F) => G,
   op7: (input: G) => H,
-): H
+): (value: A) => H
 
-export function pipe<A, B, C, D, E, F, G, H, I>(
-  value: A,
+export function createPipe<A, B, C, D, E, F, G, H, I>(
   op1: (input: A) => B,
   op2: (input: B) => C,
   op3: (input: C) => D,
@@ -70,10 +64,9 @@ export function pipe<A, B, C, D, E, F, G, H, I>(
   op6: (input: F) => G,
   op7: (input: G) => H,
   op8: (input: H) => I,
-): I
+): (value: A) => I
 
-export function pipe<A, B, C, D, E, F, G, H, I, J>(
-  value: A,
+export function createPipe<A, B, C, D, E, F, G, H, I, J>(
   op1: (input: A) => B,
   op2: (input: B) => C,
   op3: (input: C) => D,
@@ -83,10 +76,9 @@ export function pipe<A, B, C, D, E, F, G, H, I, J>(
   op7: (input: G) => H,
   op8: (input: H) => I,
   op9: (input: I) => J,
-): J
+): (value: A) => J
 
-export function pipe<A, B, C, D, E, F, G, H, I, J, K>(
-  value: A,
+export function createPipe<A, B, C, D, E, F, G, H, I, J, K>(
   op1: (input: A) => B,
   op2: (input: B) => C,
   op3: (input: C) => D,
@@ -97,11 +89,8 @@ export function pipe<A, B, C, D, E, F, G, H, I, J, K>(
   op8: (input: H) => I,
   op9: (input: I) => J,
   op10: (input: J) => K,
-): K
+): (value: A) => K
 
-export function pipe(
-  value: any,
-  ...operations: readonly ((input: any) => any)[]
-) {
-  return operations.reduce((acc, fn) => fn(acc), value)
+export function createPipe(...operations: ((input: any) => any)[]) {
+  return (value: any) => (pipe as any)(value, ...operations)
 }

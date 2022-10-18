@@ -151,9 +151,9 @@ const myNameIs = partialize(concatStrings, 'My name ', 'is ')
 log(myNameIs('Bond')) // My name is Bond
 ```
 
-## pipe(...fns)(value)
+## createPipe(...operations)(value)
 
-Used to implement pipeline in a value
+Used to create a pipeline in a value
 Pipe implements the composition principle of mathematics, where you can compose functions to create a new function, like in this example:
 
 <pre>h = f . g = f(g(x)).</pre>
@@ -165,8 +165,8 @@ This transformation occurs from left to right.
 
 <ul>
   <li>
-    <b>fns</b>:
-    One or more callback functions to transform the value in the pipeline.
+    <b>operations</b>:
+    One or more callback functions (operations) to transform the value in the pipeline.
   </li>
   <li>
     <b>value</b>:
@@ -175,28 +175,28 @@ This transformation occurs from left to right.
 </ul>
 
 ```js
-import { pipe, log } from '@cahmoraes93/utils'
+import { createPipe, log } from '@cahmoraes93/utils'
 
 const double = (n1) => n1 * 2
 const triple = (n1) => n1 * 3
 
-const transformValue = pipe(double, triple)
+const transformValue = createPipe(double, triple)
 const result = transformValue(3)
 
 log(result)
 //=> 18
 ```
 
-## asyncPipe(...fns)(value)
+## createAsyncPipe(...operations)(value)
 
-used to apply an async pipeline to a value. It's an async version of the pipe function, but it works with promises.
+used to create an async pipeline to a value. It's an async version of the createPipe function, but it works with promises.
 Each function in the pipeline should receive the value passed from the previous function, which is mapped by the other functions in the pipeline.
 
 This transformation occurs from left to right.
 
 <ul>
   <li>
-    <b>fns</b>:
+    <b>operations</b>:
     One or more callback functions to transform the value in the pipeline.
   </li>
   <li>
@@ -206,12 +206,12 @@ This transformation occurs from left to right.
 </ul>
 
 ```js
-import { asyncPipe, log } from '@cahmoraes93/utils'
+import { createAsyncPipe, log } from '@cahmoraes93/utils'
 
 const double = (n1) => Promise.resolve(n1 * 2)
 const triple = (n1) => Promise.resolve(n1 * 3)
 
-const transformValue = asyncPipe(double, triple)
+const transformValue = createAsyncPipe(double, triple)
 const result = await transformValue(Promise.resolve(3))
 
 log(result)
@@ -477,4 +477,66 @@ log(result)
 
 log(result.greeting())
 //=> Hello, my name's John Doe
+```
+
+## pipe(value, ...operations)
+
+Used to transform a value by a pipeline.
+
+Each function in the pipeline should receive the value passed from the previous function, which is mapped by the other functions in the pipeline.
+<b>This pipe function is not working with promises. For this, use the asyncPipe function.</b>
+
+This transformation occurs from left to right.
+
+<ul>
+  <li>
+    <b>value</b>:
+    Value that will be transform at the pipeline.
+  </li>
+  <li>
+    <b>operations</b>:
+    One or more callback functions (operations) to transform the value in the pipeline.
+  </li>
+</ul>
+
+```js
+import { pipe, log } from '@cahmoraes93/utils'
+
+const double = (n1) => n1 * 2
+const triple = (n1) => n1 * 3
+
+const result = pipe(3, double, triple)
+
+log(result)
+//=> 18
+```
+
+## asyncPipe(value, ...operations)
+
+Used to transform a value by an async pipeline. It's an async version of the pipe function, but it works with promises.
+Each function in the pipeline should receive the value passed from the previous function, which is mapped by the other functions in the pipeline.
+
+This transformation occurs from left to right.
+
+<ul>
+  <li>
+    <b>value</b>:
+    value to be transformed in the pipeline 
+  </li>
+  <li>
+    <b>operations</b>:
+    One or more callback functions to transform the value in the pipeline.
+  </li>
+</ul>
+
+```js
+import { asyncPipe, log } from '@cahmoraes93/utils'
+
+const double = (n1) => Promise.resolve(n1 * 2)
+const triple = (n1) => Promise.resolve(n1 * 3)
+
+const transformValue = await asyncPipe(Promise.resolve(3), double, triple)
+
+log(result)
+//=> 18
 ```
