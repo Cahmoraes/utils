@@ -13,7 +13,7 @@ export const deepFreeze = <T extends object>(data: T): Readonly<T> => {
       freezeMapOrSet(data)
       entries(data)
     } else {
-      Reflect.ownKeys(data).forEach((key) => deepFreeze(data[key]))
+      Reflect.ownKeys(data).forEach((key) => deepFreeze((data as any)[key]))
     }
   }
 
