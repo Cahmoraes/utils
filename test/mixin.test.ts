@@ -34,8 +34,33 @@ describe('mixin test suite', () => {
     expect(result.greeting()).toBe(person.name)
   })
 
+  it('should return an Object with nested properties copied from others objects', () => {
+    const obj = {}
+
+    const person = {
+      name: 'john',
+      lastName: 'Joe',
+      age: 28,
+      props: {
+        name: 'john',
+      },
+    }
+
+    const job = {
+      greeting() {
+        return (this as any).name
+      },
+    }
+
+    const result = mixin<typeof person & typeof job>(obj, person, job)
+
+    expect(result).toBeInstanceOf(Object)
+    expect(result).toEqual({ ...person, ...job })
+    expect(result.greeting()).toBe(person.name)
+  })
+
   it('should throw a typeError when target is not of type object', () => {
-    const obj = []
+    const obj: any[] = []
 
     const person = {
       name: 'john',

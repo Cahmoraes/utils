@@ -94,8 +94,10 @@ declare const typeOf: (elementToCheck: unknown) => any;
  */
 declare const isPrimitive: (element: unknown) => boolean;
 
-declare type Func$2<T extends any[]> = (...args: T) => any;
-declare const curry: (fn: Func$2<any>) => Func$2<any[]>;
+declare type Curry = <R extends (...args: any) => any>(fn: R) => Curried<ReturnType<R>>;
+declare type Curried<R> = (...args: any) => Curried2<R>;
+declare type Curried2<R> = R extends (...args: any) => any ? never : Curried<R>;
+declare const curry: Curry;
 
 declare type Func$1<TS extends any[], R> = (...args: TS) => R;
 /**
@@ -129,7 +131,7 @@ declare const takeUntil: <T>(fn: Func<T>, until?: number) => (...args: unknown[]
  */
 declare const deepFreeze: <T extends object>(data: T) => Readonly<T>;
 
-declare const mixin: <TResult = any>(target: object, ...objects: any[]) => TResult;
+declare const mixin: <TResult = any>(target: any, ...objects: any[]) => TResult;
 
 /**
  * Apply pipeline to a value
