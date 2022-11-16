@@ -540,3 +540,49 @@ const transformValue = await asyncPipe(Promise.resolve(3), double, triple)
 log(result)
 //=> 18
 ```
+
+## checkInterface<Interface>(anObject, ...keys): boolean
+
+Check if a given object is type of an interface.
+
+<ul>
+  <li>
+    <b>Interface</b>:
+    Interface to be check. This type parameter is used to ensure the intellisense.
+  </li>
+  <li>
+    <b>anObject</b>:
+    An object to check
+  </li>
+  <li>
+    <b>keys</b>:
+    Keys from interface to match in object.
+  </li>
+</ul>
+
+```ts
+import { checkInterface, log } from '@cahmoraes93/utils'
+
+interface Product {
+  name: string
+  price: number
+}
+
+const anProductSample: Product = {
+  name: 'book',
+  price: 18.99,
+}
+
+const isProduct = checkInterface<Product>(anProductSample, 'name', 'price')
+log(isProduct)
+//=> true
+
+const aNotProductSample = {
+  name: 'book',
+}
+
+const nonProduct = checkInterface<Product>(aNotProductSample, 'name', 'price')
+
+log(nonProduct)
+//=> false
+```

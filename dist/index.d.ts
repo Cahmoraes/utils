@@ -171,4 +171,16 @@ declare function asyncPipe<A, B, C, D, E, F, G, H, I>(value: Promise<A> | A, op1
 declare function asyncPipe<A, B, C, D, E, F, G, H, I, J>(value: Promise<A> | A, op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => Promise<E>, op5: (input: E) => Promise<F>, op6: (input: F) => Promise<G>, op7: (input: G) => Promise<H>, op8: (input: H) => Promise<I>, op9: (input: I) => Promise<J>): Promise<J>;
 declare function asyncPipe<A, B, C, D, E, F, G, H, I, J, K>(value: Promise<A> | A, op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => Promise<E>, op5: (input: E) => Promise<F>, op6: (input: F) => Promise<G>, op7: (input: G) => Promise<H>, op8: (input: H) => Promise<I>, op9: (input: I) => Promise<J>, op10: (input: J) => Promise<K>): Promise<K>;
 
-export { asyncPipe, createAsyncPipe, createPipe, curry, debounce, deepFreeze, isPrimitive, log, memo, mixin, partialize, path, pipe, takeUntil, typeOf };
+/**
+ * Check if object is type of Interface in Type Parameter
+ * @date 16/11/2022 - 19:20:18
+ *
+ * @export
+ * @template Interface - Interface to check
+ * @param {unknown} anObj - Object to check
+ * @param {...(keyof Interface)[]} keys - keys of interface to check in object
+ * @returns {anObj is Interface}
+ */
+declare function checkInterface<Interface>(anObj: unknown, ...keys: (keyof Interface)[]): anObj is Interface;
+
+export { asyncPipe, checkInterface, createAsyncPipe, createPipe, curry, debounce, deepFreeze, isPrimitive, log, memo, mixin, partialize, path, pipe, takeUntil, typeOf };
