@@ -53,7 +53,7 @@ declare function createAsyncPipe<A, B, C, D, E, F, G, H, I>(op1: (input: A) => P
 declare function createAsyncPipe<A, B, C, D, E, F, G, H, I, J>(op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => Promise<E>, op5: (input: E) => Promise<F>, op6: (input: F) => Promise<G>, op7: (input: G) => Promise<H>, op8: (input: H) => Promise<I>, op9: (input: I) => Promise<J>): (value: Promise<A> | A) => Promise<J>;
 declare function createAsyncPipe<A, B, C, D, E, F, G, H, I, J, K>(op1: (input: A) => Promise<B>, op2: (input: B) => Promise<C>, op3: (input: C) => Promise<D>, op4: (input: D) => Promise<E>, op5: (input: E) => Promise<F>, op6: (input: F) => Promise<G>, op7: (input: G) => Promise<H>, op8: (input: H) => Promise<I>, op9: (input: I) => Promise<J>, op10: (input: J) => Promise<K>): (value: Promise<A> | A) => Promise<K>;
 
-declare type MemoizedFn<T> = T & {
+type MemoizedFn<T> = T & {
     clear: () => void;
 };
 /**
@@ -65,7 +65,7 @@ declare type MemoizedFn<T> = T & {
  */
 declare const memo: <K>(fn: K) => MemoizedFn<K>;
 
-declare type PartialFunction<T> = (...args: any[]) => T;
+type PartialFunction<T> = (...args: any[]) => T;
 /**
  * Apply pattern Partial Application
  * @date 08/10/2022 - 16:30:22
@@ -83,7 +83,7 @@ declare const partialize: <T>(fn: PartialFunction<T>, ...args: any[]) => Partial
  * @param {unknown} elementToCheck Element to check type
  * @returns {String} type of element
  */
-declare const typeOf: (elementToCheck: unknown) => any;
+declare const typeOf: (elementToCheck: unknown) => string;
 
 /**
  * Check if element is a primitive type
@@ -94,12 +94,12 @@ declare const typeOf: (elementToCheck: unknown) => any;
  */
 declare const isPrimitive: (element: unknown) => boolean;
 
-declare type Curry = <R extends (...args: any) => any>(fn: R) => Curried<ReturnType<R>>;
-declare type Curried<R> = (...args: any) => Curried2<R>;
-declare type Curried2<R> = R extends (...args: any) => any ? never : Curried<R>;
+type Curry = <R extends (...args: any) => any>(fn: R) => Curried<ReturnType<R>>;
+type Curried<R> = (...args: any) => Curried2<R>;
+type Curried2<R> = R extends (...args: any) => any ? never : Curried<R>;
 declare const curry: Curry;
 
-declare type Func$1<TS extends any[], R> = (...args: TS) => R;
+type Func$1<TS extends any[], R> = (...args: TS) => R;
 /**
  * This function implements debounce pattern
  * @date 11/10/2022 - 14:40:38
@@ -110,7 +110,7 @@ declare type Func$1<TS extends any[], R> = (...args: TS) => R;
  */
 declare const debounce: (fn: Func$1<any[], any>, milliseconds?: number) => (...args: unknown[]) => void;
 
-declare type Func<T> = (...args: any[]) => T;
+type Func<T> = (...args: any[]) => T;
 /**
  * Create a function that can be called a certain number of times. If the number of calls is greater than the configured number of times, the undefined value will be returned.
  * @date 11/10/2022 - 14:42:51
