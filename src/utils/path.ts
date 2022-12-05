@@ -6,16 +6,25 @@
  * @param {string} pathString Path to property: 'addresses.0.street'
  * @returns {(T | null)} Existing property or null if none
  */
+
+function isKeyOf(
+  anObject: object,
+  aKey: string,
+): aKey is keyof typeof anObject {
+  return Reflect.has(anObject, aKey)
+}
+
 export const path = <T>(module: unknown, pathString: string): T | null => {
   if (!module) return null
 
   const [firstPath, ...paths] = pathString.split('.')
-  let fullPath = (module as any)[firstPath]
+  if (!isKeyOf(module, firstPath)) return null
+  let fullPath = module[firstPath]
 
   for (const path of paths) {
     if (!fullPath) return null
     fullPath = fullPath[path]
   }
 
-  return fullPath as T
+  return fullPath
 }
