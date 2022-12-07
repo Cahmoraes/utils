@@ -31,7 +31,7 @@ interface CurriedFunction3<A1, A2, A3, R> {
 }
 
 export const curry: Curry = (fn: Func<any[], any>) => {
-  function curried(...args: any[]) {
+  return function curried(...args: any[]) {
     if (fn.length <= args.length) {
       return Reflect.apply(fn, null, args)
     } else {
@@ -40,6 +40,4 @@ export const curry: Curry = (fn: Func<any[], any>) => {
       }
     }
   }
-
-  return curried
 }

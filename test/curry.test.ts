@@ -29,7 +29,7 @@ describe('curry test suite', () => {
     expect(value).toBe('22')
   })
 
-  it('should return one function by argument ignoring not necessary arguments', () => {
+  it('should return one function by argument ignoring unnecessary argument', () => {
     const sum = (n1: number, n2: number, n3: number) => n1 + n2 + n3
     const curried = curry(sum)
     const value = curried(2, 2, 4)
