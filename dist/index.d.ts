@@ -94,9 +94,30 @@ declare const typeOf: (elementToCheck: unknown) => string;
  */
 declare const isPrimitive: (element: unknown) => boolean;
 
-type Curry = <R extends (...args: any) => any>(fn: R) => Curried<ReturnType<R>>;
-type Curried<R> = (...args: any) => Curried2<R>;
-type Curried2<R> = R extends (...args: any) => any ? never : Curried<R>;
+type Func$2<TS extends any[], R> = (...args: TS) => R;
+interface Curry {
+    <A, R>(func: (arg: A) => R): CurriedFunction1<A, R>;
+    <A1, A2, R>(func: (arg1: A1, arg2: A2) => R): CurriedFunction2<A1, A2, R>;
+    <A1, A2, A3, R>(func: (arg1: A1, arg2: A2, arg3: A3) => R): CurriedFunction3<A1, A2, A3, R>;
+    (func: Func$2<any[], any>): Func$2<any[], any>;
+}
+interface CurriedFunction1<A, R> {
+    (): CurriedFunction1<A, R>;
+    (arg: A): R;
+}
+interface CurriedFunction2<A1, A2, R> {
+    (): CurriedFunction2<A1, A2, R>;
+    (arg1: A1): CurriedFunction1<A2, R>;
+    (arg1: '_', arg2: A2): CurriedFunction1<A1, R>;
+    (arg1: A1, arg2: A2): R;
+}
+interface CurriedFunction3<A1, A2, A3, R> {
+    (): CurriedFunction3<A1, A2, A3, R>;
+    (arg1: A1): CurriedFunction2<A1, A2, R>;
+    (arg1: '_', arg2: A2): CurriedFunction1<A1, R>;
+    (arg1: A1, arg2: A2): CurriedFunction3<A1, A2, A3, R>;
+    (arg1: A1, arg2: A2, arg3: A3): R;
+}
 declare const curry: Curry;
 
 type Func$1<TS extends any[], R> = (...args: TS) => R;
