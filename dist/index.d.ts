@@ -204,4 +204,20 @@ declare function asyncPipe<A, B, C, D, E, F, G, H, I, J, K>(value: Promise<A> | 
  */
 declare function checkInterface<Interface>(anObj: unknown, ...keys: (keyof Interface)[]): anObj is Interface;
 
-export { asyncPipe, checkInterface, createAsyncPipe, createPipe, curry, debounce, deepFreeze, isPrimitive, log, memo, mixin, partialize, path, pipe, takeUntil, typeOf };
+declare class Left<L, R> {
+    readonly value: L;
+    constructor(value: L);
+    isLeft(): this is Left<L, R>;
+    isRight(): this is Right<L, R>;
+}
+declare class Right<L, R> {
+    readonly value: R;
+    constructor(value: R);
+    isLeft(): this is Left<L, R>;
+    isRight(): this is Right<L, R>;
+}
+type Either<L, R> = Left<L, R> | Right<L, R>;
+declare const left: <L, R>(left: L) => Left<L, R>;
+declare const right: <L, R>(right: R) => Right<L, R>;
+
+export { Either, Left, Right, asyncPipe, checkInterface, createAsyncPipe, createPipe, curry, debounce, deepFreeze, isPrimitive, left, log, memo, mixin, partialize, path, pipe, right, takeUntil, typeOf };
