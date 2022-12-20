@@ -22,6 +22,7 @@ export const path = <T>(module: unknown, pathString: string): T | null => {
   let fullPath = module[firstPath]
 
   for (const path of paths) {
+    /* c8 ignore next */
     if (!fullPath) return null
     fullPath = fullPath[path]
   }
