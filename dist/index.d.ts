@@ -204,4 +204,11 @@ declare function asyncPipe<A, B, C, D, E, F, G, H, I, J, K>(value: Promise<A> | 
  */
 declare function checkInterface<Interface>(anObj: unknown, ...keys: (keyof Interface)[]): anObj is Interface;
 
-export { asyncPipe, checkInterface, createAsyncPipe, createPipe, curry, debounce, deepFreeze, isPrimitive, log, memo, mixin, partialize, path, pipe, takeUntil, typeOf };
+/**
+ * Create Map from Object
+ * @param {Record<string, TValue>} anObject
+ * @returns {Map}
+ */
+declare const makeMap: <TValue = unknown>(anObject: Record<string, TValue>) => Map<string, TValue>;
+
+export { asyncPipe, checkInterface, createAsyncPipe, createPipe, curry, debounce, deepFreeze, isPrimitive, log, makeMap, memo, mixin, partialize, path, pipe, takeUntil, typeOf };
