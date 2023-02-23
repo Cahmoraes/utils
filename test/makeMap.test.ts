@@ -1,4 +1,4 @@
-import { describe, it, expect, jest } from '@jest/globals'
+import { describe, it, expect } from '@jest/globals'
 import { makeMap } from '../src'
 
 describe('makeMap test suite', () => {
@@ -13,7 +13,8 @@ describe('makeMap test suite', () => {
     expect(userMap).toBeInstanceOf(Map)
     expect(userMap.has('name')).toBeTruthy()
     expect(userMap.get('name')).toBe(user.name)
-    expect(userMap.has('age')).toBe(user.age)
+
+    expect(userMap.has('age')).toBeTruthy()
     expect(userMap.get('age')).toBe(user.age)
   })
 })

@@ -591,3 +591,30 @@ const nonProduct = checkInterface<IProduct>(aNotProductSample, 'name', 'price')
 
 log(nonProduct) //=> false
 ```
+
+# makeMap
+
+```ts
+- makeMap<TValue = unknown>(anObject: Record<string, TValue>): Map<string, TValue>
+```
+
+Creates a Map data structure from an object
+
+<br>
+
+**anObject**: an Object to create a Map.
+
+```ts
+import { makeMap, log } from '@cahmoraes93/utils'
+
+const user {
+  name: 'John',
+  age: 29,
+}
+
+const userMap = makeMap(user)
+log(userMap instanceof Map) //=> true
+log(userMap.get('name')) //=> 'John'
+log(userMap.has('age')) //=> true
+
+```
